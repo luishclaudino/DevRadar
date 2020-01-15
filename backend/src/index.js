@@ -1,15 +1,6 @@
-const express = require('express'); //váriaveis de valor const não são alteradas
-const mongoose = require('mongoose');
-const routes = require('./routes');
-
-const app = express();
-
-mongoose.connect('mongodb+srv://cl4udino:teste123@cluster0-tvh3a.mongodb.net/test?retryWrites=true&w=majority',{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-});
+const express = require('express')
+const mongoose = require('mongoose')
+const routes = require('./routes.js')
 
 //Métodos HTTP
 //get(quando requer uma informação), post(criar uma informação), delete, put(editar uma informação)
@@ -22,8 +13,16 @@ mongoose.connect('mongodb+srv://cl4udino:teste123@cluster0-tvh3a.mongodb.net/tes
 
 //MongoDB (Não-Relacional)
 
-app.use(express.json());
-app.use(routes);
+mongoose.connect('mongodb+srv://cl4udino:teste123@cluster0-tvh3a.mongodb.net/test?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+})
 
-app.listen(3333);
+const app = express()
 
+app.use(express.json())
+app.use(routes)
+
+app.listen(3333)

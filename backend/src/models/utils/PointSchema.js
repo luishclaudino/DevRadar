@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const PointSchema = new mongoose.Schema({
     type: {
@@ -8,6 +8,8 @@ const PointSchema = new mongoose.Schema({
     },
     coordinates: {
         type: [Number],
-        required: true,
-    },
-});
+        required: true
+    }
+})
+
+module.exports = PointSchema
