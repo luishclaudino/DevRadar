@@ -1,5 +1,6 @@
-const express = require('express')
-const mongoose = require('mongoose')
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
 const routes = require('./routes.js')
 
 //Métodos HTTP
@@ -20,9 +21,12 @@ mongoose.connect('mongodb+srv://cl4udino:teste123@cluster0-tvh3a.mongodb.net/tes
     useCreateIndex: true,
 })
 
-const app = express()
+const app = express();
 
+app.use(cors({origin: 'http://localhost:3000'}));
 app.use(express.json())
 app.use(routes)
+
+
 
 app.listen(3333)
