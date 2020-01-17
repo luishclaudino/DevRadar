@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const routes = require('./routes.js')
+const routes = require('./routes.js');
+const {MONGO_USER, MONGO_PASS, MONGO_DB} = require('../.env')
 
 //Métodos HTTP
 //get(quando requer uma informação), post(criar uma informação), delete, put(editar uma informação)
@@ -14,7 +15,7 @@ const routes = require('./routes.js')
 
 //MongoDB (Não-Relacional)
 
-mongoose.connect('mongodb+srv://cl4udino:teste123@cluster0-tvh3a.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect(`mongodb+srv://${MONGO_USER}:${MONGO_PASS}@cluster0-tvh3a.mongodb.net/${MONGO_DB}?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
