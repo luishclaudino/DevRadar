@@ -1,0 +1,9 @@
+O que é e pra que serve Redux? Qual a diferença para o ContextAPI?
+Onde entra os React Hooks nessa história?
+Como o GraphQL pode influenciar nessa estratégia?
+Quais as melhores bibliotecas para lidar com os recursos do smartphone?
+Como organizar o código de uma forma escalável?
+Como fazer testes automatizados para garantir o funcionamento correto da aplicação?
+Como automatizar o fluxo de deploy e minimizar todo esse trabalho?
+Como capturar os erros em desenvolvimento e produção de forma eficiente?
+

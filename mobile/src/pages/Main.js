@@ -5,7 +5,7 @@ import {requestPermissionsAsync, getCurrentPositionAsync} from 'expo-location';
 import { MaterialIcons } from '@expo/vector-icons'
 
 import api from '../services/api';
-import { connect, disconnect } from '../services/socket';
+import { connect, disconnect, subscribeToNewDevs } from '../services/socket';
 
 
 function Main({ navigation }){
@@ -36,8 +36,15 @@ function Main({ navigation }){
         loadInitialPosition();
     }, []);
 
+    useEffect(() => {
+        subscribeToNewDevs(dev => setDevs([...devs,dev]));
+    }, [devs]);
+
     function setupWebsocket() {
+        disconnect();
+
         const {latitude, longitude} = currentRegion;
+        
         connect(
             latitude,
             longitude,
@@ -56,7 +63,7 @@ function Main({ navigation }){
             }
         });
 
-        setDevs(response.data);
+        setDevs(response.data); //Isso é assíncrono então a função de baixo vai executar antes 90% das vezes, usar o UseEffevt é a forma mais simples de solucionar
         setupWebsocket();
         
     }
