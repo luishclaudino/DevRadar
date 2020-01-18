@@ -1,8 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const http = require('http');
 const routes = require('./routes.js');
 const {MONGO_USER, MONGO_PASS, MONGO_DB} = require('../.env')
+
+const { setupWebsocket } = require('./websocket');
 
 //Métodos HTTP
 //get(quando requer uma informação), post(criar uma informação), delete, put(editar uma informação)
@@ -23,11 +26,12 @@ mongoose.connect(`mongodb+srv://${MONGO_USER}:${MONGO_PASS}@cluster0-tvh3a.mongo
 })
 
 const app = express();
+const server = http.Server(app);
+
+setupWebsocket(server);
 
 app.use(cors({origin: 'http://localhost:3000'}));
 app.use(express.json())
 app.use(routes)
 
-
-
-app.listen(3333)
+server.listen(3333)
